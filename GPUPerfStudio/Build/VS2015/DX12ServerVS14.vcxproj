@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Static|Win32">
+      <Configuration>Debug_Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Static|x64">
+      <Configuration>Debug_Static</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Static|Win32">
+      <Configuration>Release_Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Static|x64">
+      <Configuration>Release_Static</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>DX12Server</ProjectName>
+    <ProjectGuid>{E9197E4C-AB49-46B4-A9D9-7DE57D414DC4}</ProjectGuid>
+    <RootNamespace>DX12Wrapper</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="Server-Common.props" />
+    <Import Project="..\..\..\Common\Lib\Ext\Windows-Kits\Global-WindowsSDK.props" />
+    <Import Project="..\..\..\Common\Lib\Ext\tinyxml\Global-TinyXML-VS2015.props" />
+    <Import Project="..\..\..\Common\Lib\Ext\Boost\Global-Boost-2015.props" />
+    <Import Project="AMDTOSWrappers.props" />
+    <Import Project="..\..\..\Common\Src\GPUPerfAPIUtils\Global-GPUPerfAPIUtils.props" />
+    <Import Project="..\..\..\Common\Lib\AMD\GPUPerfAPI\Global-GPUPerfAPI.props" />
+    <Import Project="..\..\..\CommonProjects\AMDTInterceptor\Interceptor.mhook-dllinjector-2015.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">
+    <Import Project="..\..\..\Common\Lib\Ext\libpng\v1.6.19\Global-libpng-2015.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
+    <Import Project="..\..\..\Common\Lib\Ext\libpng\v1.6.19\Global-libpng-2015.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">
+    <Import Project="..\..\..\Common\Lib\Ext\libpng\v1.6.19\Global-libpng-2015.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">
+    <Import Project="..\..\..\Common\Lib\Ext\libpng\v1.6.19\Global-libpng-2015.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">$(MyBinDir)Plugins\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">$(MyBinDir)Plugins\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">$(MyBinDir)Plugins\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">$(MyBinDir)Plugins\</OutDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">$(ProjectName)$(GDTProjectSuffix)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">$(ProjectName)$(GDTProjectSuffix)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">$(ProjectName)$(GDTProjectSuffix)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">$(ProjectName)$(GDTProjectSuffix)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>DX12_SERVER;GPS_PLUGIN_EXPORTS;LOG_MODULE="DX12Server";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Server\DX12Server;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d12.lib;d3dcompiler.lib;wsock32.lib;winmm.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <DelayLoadDLLs>PerformanceExperimentFile$(GDTPlatformSuffix)$(GDTBuildSuffix).dll;GPUThreadTrace$(GDTPlatformSuffix)$(GDTBuildSuffix).dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>DX12_SERVER;GPS_PLUGIN_EXPORTS;LOG_MODULE="DX12Server";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Server\DX12Server;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d12.lib;d3dcompiler.lib;wsock32.lib;winmm.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <DelayLoadDLLs>PerformanceExperimentFile$(GDTPlatformSuffix)$(GDTBuildSuffix).dll;GPUThreadTrace$(GDTPlatformSuffix)$(GDTBuildSuffix).dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>DX12_SERVER;GPS_PLUGIN_EXPORTS;LOG_MODULE="DX12Server";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Server\DX12Server;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d12.lib;d3dcompiler.lib;wsock32.lib;winmm.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <DelayLoadDLLs>PerformanceExperimentFile$(GDTPlatformSuffix)$(GDTBuildSuffix).dll;GPUThreadTrace$(GDTPlatformSuffix)$(GDTBuildSuffix).dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <PreprocessorDefinitions>DX12_SERVER;GPS_PLUGIN_EXPORTS;LOG_MODULE="DX12Server";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\Server\DX12Server;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3d12.lib;d3dcompiler.lib;wsock32.lib;winmm.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <DelayLoadDLLs>PerformanceExperimentFile$(GDTPlatformSuffix)$(GDTBuildSuffix).dll;GPUThreadTrace$(GDTPlatformSuffix)$(GDTBuildSuffix).dll</DelayLoadDLLs>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\Server\DX12Server\DX12Server.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Common\Src\GPUPerfAPIUtils\GPUPerfAPILoader.h" />
+    <ClInclude Include="..\..\Server\Common\Capture.h" />
+    <ClInclude Include="..\..\Server\Common\CaptureClassTypes.h" />
+    <ClInclude Include="..\..\Server\Common\CaptureLayer.h" />
+    <ClInclude Include="..\..\Server\Common\CaptureStream.h" />
+    <ClInclude Include="..\..\Server\Common\CommandProcessor.h" />
+    <ClInclude Include="..\..\Server\Common\CommandStrings.h" />
+    <ClInclude Include="..\..\Server\Common\CommandTimingManager.h" />
+    <ClInclude Include="..\..\Server\Common\CommandVisitor.h" />
+    <ClInclude Include="..\..\Server\Common\CommonTypes.h" />
+    <ClInclude Include="..\..\Server\Common\ConnectWithDXGI.h" />
+    <ClInclude Include="..\..\Server\Common\defines.h" />
+    <ClInclude Include="..\..\Server\Common\FrameStatsLogger.h" />
+    <ClInclude Include="..\..\Server\Common\frect.h" />
+    <ClInclude Include="..\..\Server\Common\HookTimer.h" />
+    <ClInclude Include="..\..\Server\Common\HTTPLogger.h" />
+    <ClInclude Include="..\..\Server\Common\HTTPRequest.h" />
+    <ClInclude Include="..\..\Server\Common\ICommunication.h" />
+    <ClInclude Include="..\..\Server\Common\ICommunication_Impl.h" />
+    <ClInclude Include="..\..\Server\Common\IInstanceBase.h" />
+    <ClInclude Include="..\..\Server\Common\ILayer.h" />
+    <ClInclude Include="..\..\Server\Common\IMonitor.h" />
+    <ClInclude Include="..\..\Server\Common\IProcessRequests.h" />
+    <ClInclude Include="..\..\Server\Common\IServerPlugin.h" />
+    <ClInclude Include="..\..\Server\Common\LayerManager.h" />
+    <ClInclude Include="..\..\Server\Common\Logger.h" />
+    <ClInclude Include="..\..\Server\Common\misc.h" />
+    <ClInclude Include="..\..\Server\Common\ModernAPILayerManager.h" />
+    <ClInclude Include="..\..\Server\Common\MultithreadedTraceAnalyzerLayer.h" />
+    <ClInclude Include="..\..\Server\Common\NamedEvent.h" />
+    <ClInclude Include="..\..\Server\Common\NamedMutex.h" />
+    <ClInclude Include="..\..\Server\Common\NamedSemaphore.h" />
+    <ClInclude Include="..\..\Server\Common\NetSocket.h" />
+    <ClInclude Include="..\..\Server\Common\ObjectDatabaseProcessor.h" />
+    <ClInclude Include="..\..\Server\Common\parser.h" />
+    <ClInclude Include="..\..\Server\Common\SharedGlobal.h" />
+    <ClInclude Include="..\..\Server\Common\SharedMemory.h" />
+    <ClInclude Include="..\..\Server\Common\SharedMemoryManager.h" />
+    <ClInclude Include="..\..\Server\Common\TimeControlLayer.h" />
+    <ClInclude Include="..\..\Server\Common\timer.h" />
+    <ClInclude Include="..\..\Server\Common\TimingLog.h" />
+    <ClInclude Include="..\..\Server\Common\TraceAnalyzer.h" />
+    <ClInclude Include="..\..\Server\Common\TSingleton.h" />
+    <ClInclude Include="..\..\Server\Common\Windows\DllReplacement.h" />
+    <ClInclude Include="..\..\Server\Common\WrappedObjectDatabase.h" />
+    <ClInclude Include="..\..\Server\Common\xml.h" />
+    <ClInclude Include="..\..\Server\DX12Server\FrameDebugger\DX12FrameDebuggerLayer.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Rendering\DX12ImageRenderer.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Util\d3dx12.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\Capture_D3DPerfMarkers.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\Capture_D3DPerfMarkers_Classes.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\D3DCapture.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\HookHelpers.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\HookVtableImmediate.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\IFaceData.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\StringifyDxgiFormatEnums.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\StringifyDxgiTypeEnums.h" />
+    <ClInclude Include="..\..\Server\DXCommonSource\VTableData.h" />
+    <ClInclude Include="..\..\Server\DX12\DX12Defines.h" />
+    <ClInclude Include="..\..\Server\DX12Server\DX12LayerManager.h" />
+    <ClInclude Include="..\..\Server\DX12Server\DX12TraceAnalyzerLayer.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Interception\DX12Interceptor.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Objects\Autogenerated\DX12CoreWrappers.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Objects\DX12CreateInfoStructs.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Objects\DX12CustomWrappers.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Objects\DX12ObjectDatabaseProcessor.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Objects\DX12WrappedObjectDatabase.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Objects\IDX12InstanceBase.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Profiling\DX12CmdListProfiler.h" />
+    <ClInclude Include="..\..\Server\DX12Server\resource.h" />
+    <ClInclude Include="..\..\Server\DX12Server\SymbolSerializers\Autogenerated\DX12CoreSymbolSerializers.h" />
+    <ClInclude Include="..\..\Server\DX12Server\SymbolSerializers\DX12Serializers.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Util\Autogenerated\DX12CoreDeepCopy.h" />
+    <ClInclude Include="..\..\Server\DX12Server\D3D12Enumerations.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Util\DX12DeepCopy.h" />
+    <ClInclude Include="..\..\Server\DX12Server\Util\DX12Utilities.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Common\Src\GPUPerfAPIUtils\GPUPerfAPILoader.cpp" />
+    <ClCompile Include="..\..\Server\Common\Capture.cpp" />
+    <ClCompile Include="..\..\Server\Common\CaptureLayer.cpp" />
+    <ClCompile Include="..\..\Server\Common\CaptureStream.cpp" />
+    <ClCompile Include="..\..\Server\Common\CommandProcessor.cpp" />
+    <ClCompile Include="..\..\Server\Common\CommandTimingManager.cpp" />
+    <ClCompile Include="..\..\Server\Common\CommandVisitor.cpp" />
+    <ClCompile Include="..\..\Server\Common\Communication_Impl.cpp" />
+    <ClCompile Include="..\..\Server\Common\FrameStatsLogger.cpp" />
+    <ClCompile Include="..\..\Server\Common\HookTimer.cpp" />
+    <ClCompile Include="..\..\Server\Common\HTTPRequest.cpp" />
+    <ClCompile Include="..\..\Server\Common\IMonitor.cpp" />
+    <ClCompile Include="..\..\Server\Common\IServerPlugin_Impl.cpp" />
+    <ClCompile Include="..\..\Server\Common\LayerManager.cpp" />
+    <ClCompile Include="..\..\Server\Common\Logger.cpp" />
+    <ClCompile Include="..\..\Server\Common\misc.cpp" />
+    <ClCompile Include="..\..\Server\Common\ModernAPILayerManager.cpp" />
+    <ClCompile Include="..\..\Server\Common\MultithreadedTraceAnalyzerLayer.cpp" />
+    <ClCompile Include="..\..\Server\Common\NamedEvent.cpp" />
+    <ClCompile Include="..\..\Server\Common\NamedMutex.cpp" />
+    <ClCompile Include="..\..\Server\Common\NamedSemaphore.cpp" />
+    <ClCompile Include="..\..\Server\Common\NetSocket.cpp" />
+    <ClCompile Include="..\..\Server\Common\ObjectDatabaseProcessor.cpp" />
+    <ClCompile Include="..\..\Server\Common\parser.cpp" />
+    <ClCompile Include="..\..\Server\Common\SharedGlobal.cpp" />
+    <ClCompile Include="..\..\Server\Common\SharedMemory.cpp" />
+    <ClCompile Include="..\..\Server\Common\SharedMemoryManager.cpp" />
+    <ClCompile Include="..\..\Server\Common\TimeControlLayer.cpp" />
+    <ClCompile Include="..\..\Server\Common\timer.cpp" />
+    <ClCompile Include="..\..\Server\Common\TraceAnalyzer.cpp" />
+    <ClCompile Include="..\..\Server\Common\Windows\DllReplacement.cpp" />
+    <ClCompile Include="..\..\Server\Common\Windows\OSWrappers.cpp" />
+    <ClCompile Include="..\..\Server\Common\Windows\timerWin.cpp" />
+    <ClCompile Include="..\..\Server\Common\WrappedObjectDatabase.cpp" />
+    <ClCompile Include="..\..\Server\Common\xml.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\FrameDebugger\DX12FrameDebuggerLayer.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Rendering\DX12ImageRenderer.cpp" />
+    <ClCompile Include="..\..\Server\DXCommonSource\Capture_D3DPerfMarkers.cpp" />
+    <ClCompile Include="..\..\Server\DXCommonSource\D3DCapture.cpp" />
+    <ClCompile Include="..\..\Server\DXCommonSource\HookHelpers.cpp" />
+    <ClCompile Include="..\..\Server\DXCommonSource\HookVtableImmediate.cpp" />
+    <ClCompile Include="..\..\Server\DXCommonSource\StringifyDxgiFormatEnums.cpp" />
+    <ClCompile Include="..\..\Server\DXCommonSource\StringifyDxgiTypeEnums.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\DX12LayerManager.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\DX12TraceAnalyzerLayer.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Interception\DX12Interceptor.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Objects\Autogenerated\DX12CoreWrappers.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Objects\DX12CreateInfoStructs.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Objects\DX12CustomWrappers.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Objects\DX12ObjectDatabaseProcessor.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Objects\DX12WrappedObjectDatabase.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Objects\IDX12InstanceBase.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Profiling\DX12CmdListProfiler.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\SymbolSerializers\Autogenerated\DX12CoreSymbolSerializers.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\SymbolSerializers\DX12Serializers.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Util\Autogenerated\DX12CoreDeepCopy.cpp" />
+    <ClCompile Include="..\..\Server\DX12Server\Util\DX12Utilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\Server\DX12Server\Rendering\FsQuadToBuffer.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Static|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Static|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Static|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Static|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonProjects\AMDTBaseTools\AMDTBaseToolsVS14.vcxproj">
+      <Project>{11221a7f-3883-418f-b286-b0ea1e28ef10}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonProjects\AMDTOSWrappers\AMDTOSWrappersVS14.vcxproj">
+      <Project>{5d9222ac-39fb-4123-9497-78cea5be58ad}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

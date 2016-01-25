@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <TinyXMLDir>$(CommonDir)\Lib\Ext\tinyxml\2.6.2</TinyXMLDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(TinyXMLDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>tinyxml$(GDTPlatformSuffixNumBitsOnly)$(GDTDebugSuffixNoDash).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TinyXMLDir)\VS2015\$(Platform)\$(Configuration);$(TinyXMLDir)\VS2015\$(Platform)\$(ConfigurationFolderName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>tinyxml$(GDTPlatformSuffixNumBitsOnly)$(GDTDebugSuffixNoDash).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(TinyXMLDir)\VS2015\$(Platform)\$(AMDTConfiguration);$(TinyXMLDir)\VS2015\$(Platform)\$(ConfigurationFolderName)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="TinyXMLDir">
+      <Value>$(TinyXMLDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
