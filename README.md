@@ -1,5 +1,5 @@
 # amd-gpuperfstudio-dx12
-DX12 plugin for AMD GPU PerfStudio tool for graphics developers
+DirectX 12 plugin for AMD GPU PerfStudio tool for graphics developers
 
 Building the DX12Server plugin for GPU PerfStudio
 ------------------------------------------------------
