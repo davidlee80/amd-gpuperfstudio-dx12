@@ -7,10 +7,10 @@ The Visual Studio 2015 solution file is located at: "GPUPerfStudio\Build\VS2015\
 
 The PerfStudio-Server-2015.sln solution file can be used to build the following 32bit and 64bit release and debug dlls:
 
- - *DX12Server.dll*		(Release 32bit DX12 server)
- - *DX12Server-d.dll*		(Debug 32bit DX12 server)
- - *DX12Server-x64.dll* 	(Release 64bit DX12 server)
- - *DX12Server-x64-d.dll*	(Debug 64bit DX12 server)
+ - *DX12Server.dll*		(Release 32bit DirectX 12 server)
+ - *DX12Server-d.dll*		(Debug 32bit DirectX 12 server)
+ - *DX12Server-x64.dll* 	(Release 64bit DirectX 12 server)
+ - *DX12Server-x64-d.dll*	(Debug 64bit DirectX 12 server)
 
 These dlls can be used to replace those supplied with the publicly released version of GPU PerfStudio at:
 
